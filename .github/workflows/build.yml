@@ -7,15 +7,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Extract source
         shell: pwsh
-        run: Expand-Archive -Path NSC-ModManager-2.0.1.1-noModernWpf.zip -DestinationPath src
+        run: Expand-Archive -Path NSC-ModManager-with-CLI.zip -DestinationPath src
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
-      - name: Restore
-        run: dotnet restore "src/NSC-ModManager-2.0.1.1/NSC-ModManager.csproj"
-      - name: Build
-        run: dotnet build "src/NSC-ModManager-2.0.1.1/NSC-ModManager.csproj" -c Release
+      - name: Restore CLI
+        run: dotnet restore "src/NSC-ModManager-CLI/NSC-ModManager-CLI.csproj"
+      - name: Build CLI
+        run: dotnet build "src/NSC-ModManager-CLI/NSC-ModManager-CLI.csproj" -c Release
       - uses: actions/upload-artifact@v4
         with:
-          name: NSC-ModManager-build
-          path: src/NSC-ModManager-2.0.1.1/bin/**
+          name: NSC-ModManager-CLI-build
+          path: src/NSC-ModManager-CLI/bin/**
